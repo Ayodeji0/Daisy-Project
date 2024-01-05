@@ -10,6 +10,6 @@ export default {
   },
   plugins: [require('@tailwindcss/typography'),require('daisyui')],
   daisyui: {
-    themes: ["wireframe", "valentine"]
+    themes: ["retro", "valentine"]
   },
 }

@@ -11,11 +11,11 @@ const Error = () => {
       page not found
     </h1>
     <p className='mt-6 text-lg leading-7'>
-      Sorry, you in the wrong page
+      Seems you are lost please 
     </p>
    </div>
    <div className='mt-8'>
-    <Link to='/' className='btn btn-secondary'>Go Home</Link>
+    <Link to='/' className='btn btn-secondary'>Go back Home</Link>
    </div>
   </main>
   </>

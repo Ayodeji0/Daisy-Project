@@ -5,29 +5,29 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 
+
+//  saving and getting themes from local storage in-order to prevent default after refresh
 const themes = {
     valentine: 'valentine',
-    wireframe: 'wireframe'
+    retro: 'retro'
 };
-//  saving and getting themes from local storage in-order to prevent default after refresh
 
 const getThemeFromLocalStorage = () =>{
-    console.log(getThemeFromLocalStorage)
-  return  localStorage.setItem('theme') || themes.valentine;
+  return  localStorage.getItem('theme') || themes.valentine;
 }
 
 const Navbar = () => {
   const [ theme, setTheme]= useState(getThemeFromLocalStorage);
   
   const handletheme = () => {
-    const  {valentine, wireframe} = themes;
-    const newTheme = theme === valentine ? wireframe : valentine;
+    const  {valentine, retro} = themes;
+    const newTheme = theme === valentine ? retro : valentine;
     setTheme(newTheme);
   };
 
   useEffect(()=>{
   document.documentElement.setAttribute('data-theme', theme)
-  localStorage.setItem(theme,'theme')
+  localStorage.setItem('theme', theme)
   },[theme])
 
   return (
@@ -84,7 +84,7 @@ const Navbar = () => {
             </svg>
           </label>
           {/* CART LINK */}
-          <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md ml-4">
+          <NavLink to="cart" className="btn btn-ghost btn-circle btn-md ml-4">
             <div className="indicator">
               <BsCart3 className="h-4 w-4" />
               <span className="badge badge-xs badge-primary indicator-item">
