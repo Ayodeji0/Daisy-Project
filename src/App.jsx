@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
 import {
-  About,
+  AboutUs,
   Cart,
   Checkout,
   Error,
@@ -12,6 +13,11 @@ import {
   SingleProduct,
   Register,
 } from "./pages";
+import { ErrorElements } from "./components";
+
+//  loaders
+import {loader as landingloader} from './pages/Landing'
+// actions
 
 const router = createBrowserRouter([
   {
@@ -21,7 +27,9 @@ const router = createBrowserRouter([
     children:[
       {
         index:true,
-        element: <Landing/>
+        element: <Landing/>,
+        errorElement: <ErrorElements/>,
+        loader:landingloader,
       },
       {
         path:'/products',
@@ -36,8 +44,8 @@ const router = createBrowserRouter([
         element: <Cart/>
       },
       {
-        path:'/about',
-        element: <About/>
+        path:'/aboutus',
+        element: <AboutUs/>
       },
       {
         path:'/checkout',
@@ -61,6 +69,8 @@ const router = createBrowserRouter([
   },
 
 ])
+
+
 const App = () => {
   return (
     <RouterProvider router={router}>
