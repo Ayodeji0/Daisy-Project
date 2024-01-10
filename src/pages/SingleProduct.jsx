@@ -2,17 +2,24 @@
 /* eslint-disable no-unused-vars */
 
 import { useLoaderData } from "react-router-dom";
-import { formatPrice, customFetch,getAmountOptions } from "../utils";
+import { formatPrice, customFetch, getAmountOptions } from "../utils";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export const loader = async ({ params }) => {
-  const response = await customFetch(`/products/${params.id}`);
-  return { product: response.data.data };
+// eslint-disable-next-line react-refresh/only-export-components
+export const loader = async ({ params: { id } }) => {
+  try {
+    const response = await customFetch(`/products/${id}`);
+    return { product: response.data.data };
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    throw error; // Re-throw the error to propagate it further
+  }
 };
 
 const SingleProduct = () => {
   const { product } = useLoaderData();
+  console.log(product);
   const { image, title, price, description, colors, company } =
     product.attributes;
   const nairaAmount = formatPrice(price);
@@ -96,7 +103,12 @@ const SingleProduct = () => {
             </div>
             {/* CART */}
             <div className="mt-10">
-              <button className="btn btn-secondary btn-md" onClick={()=>console.log('add to cart')}>Add to Cart</button>
+              <button
+                className="btn btn-secondary btn-md"
+                onClick={() => console.log("add to cart")}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
